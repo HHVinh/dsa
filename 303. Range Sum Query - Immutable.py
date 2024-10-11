@@ -1,27 +1,27 @@
-from typing import List
+from typing import List  # Nhập List từ thư viện typing
 
 class NumArray:
     def __init__(self, nums: List[int]):
-        # Tạo một mảng prefix_sum với kích thước len(nums) + 1 để tính tổng tích lũy
-        self.prefix_sum = [0] * (len(nums) + 1)
+        self.nums = nums  # Lưu trữ danh sách nums vào thuộc tính của đối tượng
         
-        # Tính tổng tích lũy cho mỗi phần tử trong nums
-        for i in range(len(nums)):
-            # prefix_sum[i + 1] = tổng từ đầu mảng đến chỉ số i
-            self.prefix_sum[i + 1] = self.prefix_sum[i] + nums[i]
+    def sumRange(self, left: int, right: int) -> int:
+        nums = self.nums  # Lấy danh sách nums
+        result = 0  # Khởi tạo biến để lưu tổng
+        
+        # Duyệt qua từng chỉ số từ left đến right (bao gồm cả right)
+        for i in range(left, right + 1):
+            result += nums[i]  # Cộng dồn giá trị vào result
 
-    def sumRange(self, i: int, j: int) -> int:
-        # Tính tổng từ chỉ số i đến j bằng cách sử dụng tổng tích lũy
-        # prefix_sum[j + 1] - prefix_sum[i] sẽ cho tổng từ i đến j
-        return self.prefix_sum[j + 1] - self.prefix_sum[i]
+        return result 
 
 if __name__ == '__main__':
-    # Khởi tạo mảng
+    # Khởi tạo danh sách các số nguyên
     nums = [-2, 0, 3, -5, 2, -1]
-    numArray = NumArray(nums)  # Tạo đối tượng NumArray
+    numArray = NumArray(nums)  # Tạo đối tượng NumArray với danh sách nums
 
     # Gọi phương thức sumRange và in kết quả
-    print(numArray.sumRange(0, 2))  # Kết quả: 1
-    print(numArray.sumRange(2, 5))  # Kết quả: -1
-    print(numArray.sumRange(0, 5))  # Kết quả: -3
+    print(numArray.sumRange(0, 2))  # Kết quả: 1 (Tổng: -2 + 0 + 3)
+    print(numArray.sumRange(2, 5))  # Kết quả: -1 (Tổng: 3 + (-5) + 2 + (-1))
+    print(numArray.sumRange(0, 5))  # Kết quả: -3 (Tổng: -2 + 0 + 3 + (-5) + 2 + (-1))
+
    
