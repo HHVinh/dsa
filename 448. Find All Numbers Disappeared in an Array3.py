@@ -2,7 +2,7 @@ from typing import *
 
 class Solution:
     def findDisappearedNumbers(self, nums: list[int]) -> list[int]:
-        result = []  # Khởi tạo ngoài vòng lặp
+        result = []
         for n in nums:
             # Lấy giá trị tuyệt đối của nums[i] vì nó có thể đã bị đánh dấu âm trước đó
             i = abs(n) - 1  # Lấy chỉ số tương ứng với giá trị nums[i]
